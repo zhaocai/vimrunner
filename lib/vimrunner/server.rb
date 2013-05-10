@@ -101,7 +101,7 @@ module Vimrunner
       wait_until_running(options[:timeout] || 5)
 
       client = new_client
-      client.source(VIMRUNNER_RC)
+      client.source(VIMRUNNER_RC, :silent => true)
       client
     end
 

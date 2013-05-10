@@ -35,14 +35,20 @@ module Vimrunner
     #
     # script - The Vim script to be sourced
     #
+    # options - An optional Hash.
+    #
+    #           :silent - silent the source command message in vim
+    #                     (default: nil).
+    #
     # Examples
     #
     #   vim.source '/path/to/plugin/rails.vim'
     #
     # Returns nothing.
-    def source(script)
+    def source(script, options = {})
       script_path = Path.new(script)
-      feedkeys(":\\<C-u>source #{script_path}\\<CR>")
+      silent = options[:silent] ? 'silent ' : ''
+      feedkeys(":\\<C-u>#{silent}source #{script_path}\\<CR>")
     end
 
     # Public: Appends a directory to Vim's runtimepath
